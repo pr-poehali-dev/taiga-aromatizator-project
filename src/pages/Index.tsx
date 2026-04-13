@@ -19,7 +19,7 @@ const PRODUCTS = [
     available: true,
     desc: "Глубокий аромат сибирской пихты с нотами спелой брусники и черники. Природная чистота в каждой капле.",
     notes: ["Пихта", "Брусника", "Черника", "Хвоя"],
-    icon: "🌲",
+    image: "https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/files/02010aa2-1114-4369-823a-026f2251b501.jpg",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const PRODUCTS = [
     available: false,
     desc: "Бодрящий союз таёжной пихты и солнечной облепихи. Тёплый, кисло-сладкий характер сибирского лета.",
     notes: ["Пихта", "Облепиха", "Цитрус", "Смола"],
-    icon: "🍊",
+    image: "https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/files/49794170-4711-469c-b8a5-05696cac0057.jpg",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const PRODUCTS = [
     available: false,
     desc: "Свежесть весеннего утра — хвойная чистота встречается с хрустящей зеленью молодого яблока.",
     notes: ["Пихта", "Яблоко", "Свежесть", "Зелень"],
-    icon: "🍏",
+    image: "https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/files/415a731f-5eac-4618-a9ce-004fb0f929a2.jpg",
   },
 ];
 
@@ -482,7 +482,7 @@ function CatalogSection() {
                 >
                   {product.tag}
                 </span>
-                <span className="text-3xl">{product.icon}</span>
+                <img src={product.image} alt={product.name} className="w-12 h-12 object-cover" style={{ border: "1px solid var(--dark-border)" }} />
               </div>
 
               {/* Name */}
@@ -806,26 +806,53 @@ function ContactsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        {/* Менеджеры */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
           {[
-            {
-              icon: "Phone",
-              title: "Телефон",
-              value: "Указать номер",
-              sub: "Пн–Пт, 9:00–18:00 (МСК+4)",
-            },
-            {
-              icon: "Mail",
-              title: "Email",
-              value: "Указать email",
-              sub: "Ответим в течение 24 часов",
-            },
-            {
-              icon: "MapPin",
-              title: "Адрес",
-              value: "Кузбасс, Сибирь",
-              sub: "Самовывоз по договорённости",
-            },
+            { name: "Иван Иванов", role: "Менеджер по продажам", phone: "+7 (000) 000-00-01" },
+            { name: "Мария Петрова", role: "Менеджер по работе с клиентами", phone: "+7 (000) 000-00-02" },
+            { name: "Алексей Сидоров", role: "Менеджер по оптовым поставкам", phone: "+7 (000) 000-00-03" },
+          ].map((m, i) => (
+            <div
+              key={i}
+              className="reveal info-card p-8 text-center"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              <div
+                className="w-12 h-12 border mx-auto mb-5 flex items-center justify-center"
+                style={{ borderColor: "var(--gold-dim)" }}
+              >
+                <Icon name="User" size={18} style={{ color: "var(--gold)" }} />
+              </div>
+              <div
+                className="mb-1"
+                style={{
+                  fontFamily: "Cormorant Garamond, serif",
+                  fontSize: "1.2rem",
+                  color: "var(--text-main)",
+                }}
+              >
+                {m.name}
+              </div>
+              <div className="text-xs mb-4 tracking-wide" style={{ color: "var(--text-muted)" }}>
+                {m.role}
+              </div>
+              <a
+                href={`tel:${m.phone.replace(/\s|\(|\)|-/g, "")}`}
+                className="text-sm tracking-wider"
+                style={{ color: "var(--gold)", textDecoration: "none" }}
+              >
+                {m.phone}
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Email и адрес */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          {[
+            { icon: "Mail", title: "Email", value: "Указать email", sub: "Ответим в течение 24 часов" },
+            { icon: "MapPin", title: "Адрес", value: "Кузбасс, Сибирь", sub: "Самовывоз по договорённости" },
           ].map((item, i) => (
             <div
               key={i}
@@ -846,17 +873,11 @@ function ContactsSection() {
               </div>
               <div
                 className="mb-1"
-                style={{
-                  fontFamily: "Cormorant Garamond, serif",
-                  fontSize: "1.1rem",
-                  color: "var(--text-main)",
-                }}
+                style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "1.1rem", color: "var(--text-main)" }}
               >
                 {item.value}
               </div>
-              <div className="text-xs" style={{ color: "var(--text-muted)" }}>
-                {item.sub}
-              </div>
+              <div className="text-xs" style={{ color: "var(--text-muted)" }}>{item.sub}</div>
             </div>
           ))}
         </div>
@@ -869,20 +890,21 @@ function ContactsSection() {
           >
             МЫ В СОЦИАЛЬНЫХ СЕТЯХ
           </div>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 flex-wrap">
             {[
-              { icon: "MessageCircle", label: "ВКонтакте" },
-              { icon: "Send", label: "Telegram" },
-              { icon: "Instagram", label: "Instagram" },
+              { icon: "MessageCircle", label: "ВКонтакте", href: "#" },
+              { icon: "Send", label: "Telegram", href: "#" },
+              { icon: "ShoppingBag", label: "Авито", href: "#" },
             ].map((s) => (
-              <button
+              <a
                 key={s.label}
+                href={s.href}
                 className="btn-gold px-5 py-3 flex items-center gap-2"
-                style={{ padding: "10px 20px" }}
+                style={{ padding: "10px 20px", textDecoration: "none" }}
               >
                 <Icon name={s.icon} size={14} />
                 <span className="text-xs">{s.label}</span>
-              </button>
+              </a>
             ))}
           </div>
         </div>
