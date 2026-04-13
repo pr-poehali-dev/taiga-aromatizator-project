@@ -278,10 +278,10 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center">
           <img
-            src="https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/bucket/99186341-7a5e-4fff-b8e6-b803323ad040.jpeg"
+            src="https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/bucket/bfbbbbee-af09-42bc-9bef-5800019e7b83.png"
             alt="Тайга"
             className="h-10 w-auto"
-            style={{ filter: "invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(0.7)", mixBlendMode: "screen", opacity: 0.6 }}
+            style={{ filter: "invert(1)", opacity: 0.5 }}
           />
         </div>
 

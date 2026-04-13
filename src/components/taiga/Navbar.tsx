@@ -35,10 +35,10 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
         <button onClick={() => handleNav("#hero")} className="flex items-center group">
           <img
-            src="https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/bucket/99186341-7a5e-4fff-b8e6-b803323ad040.jpeg"
+            src="https://cdn.poehali.dev/projects/9d9e1f69-0295-4ccc-a38b-5f6badc4bb63/bucket/bfbbbbee-af09-42bc-9bef-5800019e7b83.png"
             alt="Тайга"
             className="h-12 w-auto"
-            style={{ filter: "invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(0.85)", mixBlendMode: "screen" }}
+            style={{ filter: "invert(1)" }}
           />
         </button>
 
